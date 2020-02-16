@@ -1,0 +1,12 @@
+﻿<div class="reminder-cell">
+    <h3>@Date.ToString()</h3>
+    <p>@Content</p>
+</div>
+
+
+@code {
+    [Parameter]
+    public DateTime Date { get; set; }
+    [Parameter]
+    public string Content { get; set; }
+}

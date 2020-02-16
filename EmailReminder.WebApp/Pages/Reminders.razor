@@ -1,0 +1,35 @@
+﻿@page "/reminders"
+@using EmailReminder.WebApp.Shared.Components
+@using EmailReminder.Shared.Models
+
+@inject EmailReminder.WebApp.Services.EmailReminderService _emailReminderService
+
+<h1>Your reminders</h1>
+
+@if (RemindersList != null)
+{
+    @foreach (var reminder in RemindersList)
+    {
+        <ReminderCell Date="@reminder.DateTime" Content="@reminder.Message" />
+    }
+}
+else
+{
+    <ReminderCell Date="@DateTime.Now" Content="Loading..." />
+}
+
+@code
+{
+    public IEnumerable<Reminder> RemindersList { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        RemindersList = await _emailReminderService.GetRemindersAsync();
+        base.StateHasChanged();
+    }
+}

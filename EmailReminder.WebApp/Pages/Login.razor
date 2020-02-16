@@ -1,0 +1,57 @@
+﻿@page "/login"
+@using Microsoft.AspNetCore.WebUtilities
+@using EmailReminder.Shared.Models
+
+@inject NavigationManager _navigationManager
+@inject EmailReminder.WebApp.Services.EmailReminderService _emailReminderService
+
+<h3>@Text</h3>
+
+@code {
+
+    private string Text = "Logging in...";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        var uri = _navigationManager.ToAbsoluteUri(_navigationManager.Uri);
+
+        string email = "";
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("email", out var emailValues))
+        {
+            email = emailValues.First();
+        }
+        else
+        {
+            Text = "Could not confirm email address.";
+            base.StateHasChanged();
+        }
+
+        string token = "";
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("token", out var tokenValues))
+        {
+            token = tokenValues.First();
+        }
+        else
+        {
+            Text = "Could not confirm email address.";
+            base.StateHasChanged();
+        }
+
+        var result = await _emailReminderService.LoginAsync(new EmailConfirmation { Email = email, Token = token });
+
+        if (result)
+        {
+            _navigationManager.NavigateTo("/reminders");
+        }
+        else
+        {
+            Text = "Could not confirm email address.";
+            base.StateHasChanged();
+        }
+    }
+}

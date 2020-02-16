@@ -1,0 +1,52 @@
+﻿@using Blazored.LocalStorage
+
+@inject ILocalStorageService _localStorage
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">EmailReminder.WebApp</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="requestLoginToken">
+                <span class="oi oi-plus" aria-hidden="true"></span> Login token
+            </NavLink>
+        </li>
+        @if (shouldDisplayReminders)
+        {
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="reminders">
+                    <span class="oi oi-basket" aria-hidden="true"></span> Reminders
+                </NavLink>
+            </li>
+        }
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private bool shouldDisplayReminders = false;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        shouldDisplayReminders = await _localStorage.ContainKeyAsync("token");
+        base.StateHasChanged();
+    }
+}

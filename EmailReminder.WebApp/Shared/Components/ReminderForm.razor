@@ -1,0 +1,45 @@
+﻿@using EmailReminder.Shared.Models
+
+@inject EmailReminder.WebApp.Services.EmailReminderService _emailReminderService
+
+<div class="reminder-form">
+    <EditForm Model=@reminder OnValidSubmit=@HandleValidSubmit>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="EmailAddress">Email Address</label>
+            <InputText id="EmailAddress" class="form-control" @bind-Value="reminder.EmailAddress" />
+        </div>
+
+        <div class="form-group">
+            <label for="Message">Message</label>
+            <InputTextArea id="Message" class="form-control" @bind-Value="reminder.Message" />
+        </div>
+
+        <div class="form-group">
+            <label for="DateTime">Date and Time</label>
+            <InputDate id="DateTime" class="form-control" @bind-Value="reminder.DateTime" />
+        </div>
+
+        <button class="btn btn-primary" type="submit">Create Reminder</button>
+    </EditForm>
+</div>
+
+@code {
+    private Reminder reminder = new Reminder();
+
+    private async void HandleValidSubmit()
+    {
+        try
+        {
+            var result = await _emailReminderService.CreateReminderAsync(reminder);
+        }
+        catch
+        {
+            base.StateHasChanged();
+        }
+        reminder = new Reminder();
+        base.StateHasChanged();
+    }
+}

@@ -1,0 +1,44 @@
+﻿@page "/requestLoginToken"
+
+@inject EmailReminder.WebApp.Services.EmailReminderService _emailReminderService
+@inject NavigationManager _navigationManager
+
+<h1>Request Login Token</h1>
+<p>If you already confirmed your account, you can request a login token here.</p>
+
+<div class="reminder-form">
+    <EditForm Model="@Email" OnValidSubmit=@HandleValidSubmit>
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <div class="form-group">
+            <label for="EmailAddress">Email Address</label>
+            <InputText id="EmailAddress" class="form-control" @bind-Value="Email.Email" />
+        </div>
+        <button class="btn btn-primary" type="submit">Request</button>
+    </EditForm>
+</div>
+
+@code{
+
+    private class EmailWrapper
+    {
+        public string Email { get; set; }
+    }
+
+    private EmailWrapper Email = new EmailWrapper();
+
+    private async void HandleValidSubmit()
+    {
+        try
+        {
+            var result = await _emailReminderService.GetLoginToken(Email.Email);
+        }
+        catch
+        {
+            Email = new EmailWrapper();
+            base.StateHasChanged();
+        }
+        _navigationManager.NavigateTo("/");
+    }
+}
