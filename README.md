@@ -8,6 +8,12 @@ This repository contains the code from the "Build full-stack web applications wi
 
 By following the book, you will develop a web application that is able to schedule emails to be sent to you in the future. This includes simple features, such as saving data from a form in the database, to more advanced ones, such as sending confirmation emails and scheduling background tasks.
 
+This is the product that you will build:
+
+![screenshot-1](https://i.imgur.com/EELLd7W.png)
+![screenshot-2](https://i.imgur.com/0ZZqoMt.png)
+![screenshot-3](https://i.imgur.com/T08i4Bi.png)
+
 ## Technologies
 
 The project is developed with ASP.NET Core WebAPI and Blazor, with Hangfire being used for background tasks. A certain degree of knowledge of programming or C# is needed, but everything about ASP.NET Core is explained at a beginner level. 
