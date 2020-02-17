@@ -1,6 +1,6 @@
 # Build full-stack web applications with ASP.NET Core
 
-This repository contains the code from the "Build full-stack web applications with ASP.NET Core" book. You can buy the book from *LINK*.
+This repository contains the code from the "Build full-stack web applications with ASP.NET Core" book. You can buy the book on [Kindle](https://www.amazon.com/dp/B084VB9P2H).
 
 ## Project
 
