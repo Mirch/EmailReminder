@@ -2,7 +2,7 @@
 
 This repository contains the code from the "Build full-stack web applications with ASP.NET Core" book. You can buy the book on:
 - [Amazon](https://www.amazon.com/dp/B084VB9P2H) as a Kindle version, 
-- [My store](https://mirceateodoroprea.selz.com/) or [Fiverr](https://www.fiverr.com/s2/ef3a4d937e) as PDF.
+- [My store](https://store.mirceaoprea.net/) or [Fiverr](https://www.fiverr.com/s2/ef3a4d937e) as PDF.
 
 ## Project
 
