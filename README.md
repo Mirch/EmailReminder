@@ -20,4 +20,4 @@ The project is developed with ASP.NET Core WebAPI and Blazor, with Hangfire bein
 
 ## Community
 
-Join the [Slack community](https://fullstackaspnetcore.slack.com) if you have any questions about the book and the code, or ASP.NET Core in general.  
+Join the [Slack community](https://join.slack.com/t/fullstackaspnetcore/shared_invite/enQtOTM1NzcxNTg0MDY1LTBlZmQ3NDlmZTYwNzljMmU0YzAyMDA4OWZiNTc1NjMzMjU5YjM3N2I2Njg3ZGZlZDQ4ZGNkY2E1YzU3NGFkOTg) if you have any questions about the book and the code, or ASP.NET Core in general.  
